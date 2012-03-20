@@ -138,8 +138,6 @@ INSTALLED_APPS = (
     'basic.places',
     'basic.events',
     'basic.media',
-    # for pycharm
-    'django_coverage',
     # st james app
     'st_james',
 )
