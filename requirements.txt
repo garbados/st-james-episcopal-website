@@ -2,6 +2,5 @@ django
 git+git://github.com/nathanborror/django-basic-apps.git
 BeautifulSoup
 django-tagging
-django-coverage
 Markdown
 dateutils

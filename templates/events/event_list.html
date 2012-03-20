@@ -1,4 +1,6 @@
 {% extends "events/base_events.html" %}
+{% load i18n %}
+{% load markup %}
 
 {% block title %}Events{% endblock %}
 
@@ -17,14 +19,15 @@
     {% for event in object_list %}
         <div class="row">
             <h3 class="title"><a href="{{ event.self.get_absolute_url }}" title="{% trans "View this post" %}">{{ event.title }}</a></h3>
-            <div class="span4">
-                <p class="body">{{ event.description|markdown }}</p>
-            </div>
-            <div class="span4">
-                <h4>Times</h4>
-                {% for time in event.event_times.all %}
-                <p>On {{ time.start.date }} from {{ time.start.time }} to {{ time.end.time }}</p>
-                {% endfor %}
+            <div class="span8">
+                {% if event.description %}
+                <p>{{ event.description|markdown }}</p>
+                {% endif %}
+                <h4>Time</h4>
+                {% with time=event.event_times.all|first %}
+                <p>On {{ time.start.date|date:"l, F j, Y" }}</p>
+                <p>{{ time.start.time }} - {{ time.end.time }}</p>
+                {% endwith %}
                 {% if event.place %}
                 <h4>Location</h4>
                 <p>{{ event.place }}</p>
