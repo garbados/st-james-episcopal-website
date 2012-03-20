@@ -1,0 +1,35 @@
+{% extends "people/base_people.html" %}
+
+{% load i18n %}
+{% load markup %}
+
+{% block title %}People{% endblock %}
+
+{% block content_title %}
+  <h2>People</h2>
+{% endblock %}
+
+
+{% block content %}
+  <div class="offset2 span8">
+    {% for person in object_list %}
+    {% if person.website %}
+    <h3 class="title"><a href="{{ person.website }}" title="{% trans "View this person" %}">{{ person.full_name }}</a></h3>
+    {% else %}
+    <h3 class="title">{{ person.full_name }}</h3>
+    {% endif %}
+    {% if person.person_types.all %}
+    <p><strong>
+    {% for type in person.person_types.all %}
+    | {{ type }}
+    {% endfor %}
+    </strong></p>
+    {% endif %}
+    {% for quote in person.quote_set.all %}
+    {% if quote.source|lower == "profile" %}
+    <p>{{ quote|markdown }}</p>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </div>
+{% endblock %}

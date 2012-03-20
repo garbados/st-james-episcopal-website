@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load blog %}
+{% load events %}
+
+        {# TODO un-hardcore all the width and height values. #}
+        {% block title %}
+            St. James Episcopal
+        {% endblock %}
+        {% block scripts %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}slideshow.css" />
+            <script type="text/Javascript" src="{{ STATIC_URL }}slideshow.js"></script>
+        {% endblock %}
+        {% block content_title %}
+            <h1>St. James Episcopal Church</h1>
+            <h2>An oasis of faith at a busy crossroads</h2>
+        {% endblock %}
+        {% block content %}
+            <div class="row">
+                <div class="span4">
+                    <!-- Brief "about" -->
+                    <h3>Welcome!</h3>
+                    <p>St. James is a small, welcoming parish located in West Somerville just outside of Cambridge. Our members include folks from many different backgrounds, and ethnicities: families with small children, adults who have grown up and married in the parish, and now have children of their own, singles, retired folks, as well as younger folks who find themselves in need of a spiritual home while they attend one of the many nearby academic institutions.</p>
+                </div>
+                <div class="span8 pull-right">
+                    <ul class="slideshow" style="margin: auto; width: 600px; height: 300px;">
+                        <!--
+                            slideshow takes this form:
+                            <li><a href=""><img src="" width="" height="" title="" alt=""/></a></li>
+                                alt is the slide's short description
+                                title, if omitted, does not make the caption window smaller, but instead disappears and leaves more room for the caption
+                        -->
+                        {% for image in pic.images %}
+                            <li {% if forloop.first %}class="show"{% endif%}><img src="{{ image.0 }}" width="{{ pic.width }}" height="{{ pic.height }}" alt=" {{ image.1 }}"></img></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="span6">
+                    <h2>News</h2>
+                    {% get_latest_posts 3 as latest_posts %}
+                    {% for post in latest_posts %}
+                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                    {% endfor %}
+                </div>
+                <div class="span6" style="text-align: right;">
+                    <h2>Events</h2>
+                    {% get_upcoming_events 3 as upcoming_events %}
+                    {% for event in upcoming_events %}
+                    <h3><a href="{{ event.get_absolute_url }}">{{ event }}</a></h3>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endblock %}

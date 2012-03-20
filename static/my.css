@@ -1,0 +1,16 @@
+body {
+}
+.content_title {
+	text-align: center;
+}
+
+/* Colors */
+.green {
+	background-color: #99D8C9;
+}
+.light_blue {
+	background-color: #E5F5F9;
+}
+.white {
+	background-color: #FFF;
+}

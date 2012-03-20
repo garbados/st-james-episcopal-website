@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+        {% block title %}
+            <title>St. James: Contact us!</title>
+        {% endblock %}
+        {% block content_title %}
+        <h2>Contact us!</h2>
+        {% endblock %}
+        {% block content %}
+	    <div class="row">
+	        <div class="offset3 span6">
+	        	<p>We're always pleased to hear from folks in the community, wherever you are on your spiritual journey. Is there something you would like to see at church, or that you would like the church to work towards? Let us know with your comments, questions, suggestions, or concerns. Thank you!</p>
+	        </div>
+	    </div>
+	    <div class="row">
+        	<form>
+        		<div class="offset3 span3">
+        			{{ contact_form.message.label_tag }}
+        			{{ contact_form.message }}
+        		</div>
+        		<div class="span3">
+    				{{ contact_form.subject.label_tag }}
+    				{{ contact_form.subject }}
+    				{{ contact_form.sender.label_tag }}
+    				{{ contact_form.sender }}
+    				<br />
+    				{{ contact_form.cc_myself }}
+    				{{ contact_form.cc_myself.label }}
+    				<input type="submit" value="Send!" class="pull-right" />
+        		</div>
+        	</form>
+	    </div>
+        {% endblock %}

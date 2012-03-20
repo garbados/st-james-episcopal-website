@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load markup %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet/less" href="{{ STATIC_URL }}bootstrap/less/bootstrap.less">
+    <script type="text/Javascript" src="{{ STATIC_URL }}less-1.2.1.min.js"></script>
+    <script type="text/Javascript" src="{{ STATIC_URL }}jquery.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}my.css">
+    {% block scripts %}{% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="/">St. James Episcopal</a>
+                <ul class="nav">
+                    <li><a href="/blog/">News</a></li>
+                    <li><a href="/events/">Events</a></li>
+                    <li><a href="/people/">People</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <div class="content_title">
+        {% block content_title %}
+        {% endblock %}
+    </div>
+    <div class="container content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block footer %}
+    <br />
+    <footer class="footer">
+        <div class="container">
+            <p style="text-align: center;">1170 Broadway (Teele Square) Somerville, MA 02144</p>
+            <p style="text-align: center;">P.O. Box 440185 || (617) 666-1063</p>
+        </div>
+    </footer>
+    {% endblock %}
+</body>
+</html>

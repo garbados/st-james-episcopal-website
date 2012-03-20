@@ -1,0 +1,37 @@
+{% extends "events/base_events.html" %}
+
+{% block title %}Events{% endblock %}
+
+{% block content_title %}
+  <h2>Events</h2>
+{% endblock %}
+
+{% block content %}
+    <div class="span2">
+        <b>Event quicklinks</b>
+        {% for event in object_list %}
+        <p><a href="{{ event.get_absolute_url }}" title="{% trans "View this post" %}">{{ event.title }}</a></p>
+        {% endfor %}
+    </div>
+    <div class="span8">
+    {% for event in object_list %}
+        <div class="row">
+            <h3 class="title"><a href="{{ event.self.get_absolute_url }}" title="{% trans "View this post" %}">{{ event.title }}</a></h3>
+            <div class="span4">
+                <p class="body">{{ event.description|markdown }}</p>
+            </div>
+            <div class="span4">
+                <h4>Times</h4>
+                {% for time in event.event_times.all %}
+                <p>On {{ time.start.date }} from {{ time.start.time }} to {{ time.end.time }}</p>
+                {% endfor %}
+                {% if event.place %}
+                <h4>Location</h4>
+                <p>{{ event.place }}</p>
+                <p>{{ event.place.address }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
